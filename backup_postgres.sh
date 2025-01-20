@@ -12,5 +12,7 @@ docker exec "$CONTAINER_NAME" pg_dump -U "$DB_USER" "$DB_NAME" > "$BACKUP_FILE"
 
 echo "Backup criado: $BACKUP_FILE"
 
+find "$BACKUP_DIR" -type f -name "*.sql" -mtime +7 -exec rm {} \;
+
 # chmod +x backup_postgres.sh
 # 0 3 * * * /caminho/para/backup_postgres.sh
